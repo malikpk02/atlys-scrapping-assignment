@@ -4,9 +4,9 @@ This project is a web scraping tool built using FastAPI. It scrapes product info
 
 ## Features
 
-- Scrape product name, price, and image from multiple pages of a catalog.
-- Optional settings to limit the number of pages to scrape and to use a proxy.
-- Storage of scraped data in different backends (local storage, AWS S3).
+- Scrap product name, price, and image from multiple pages of a catalog.
+- Optional settings to limit the number of pages to scrap and to use a proxy.
+- Storage of scraped data in different backends (local storage, Redis).
 - Caching mechanism using Redis to avoid redundant updates.
 - Retry mechanism for handling server errors.
 - Notification system to report the scraping status.
@@ -53,6 +53,15 @@ This project is a web scraping tool built using FastAPI. It scrapes product info
         brew install redis
         brew services start redis
         ```
+5. Create a `.env` file and initialize environment variables. Example:
+   ```
+   SCRAPPING_BASE_URL="{your-scrapping-webiste}"
+   DEFAULT_HEADERS={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"}
+   API_TIMEOUT="{api-timeout}"
+   STATIC_TOKEN = "{your-static-token}"
+   REDIS_HOST="{redis-host}"
+   REDIS_PORT="{redis-port}"
+   ```
 
 ## Usage
 
@@ -65,10 +74,11 @@ This project is a web scraping tool built using FastAPI. It scrapes product info
 2. Access the scraping endpoint in your browser or using a tool like `curl` or Postman:
 
     ```bash
-    http://127.0.0.1:8000/scrape?pages=5
+    http://127.0.0.1:8000/api/v1/scrap?pages=5
     ```
 
-    - `pages`: Number of pages to scrape.
+    - `pages`: Number of pages to scrap.
+    - `proxy`: Proxy to use for scrapping api
 
 ## Configuration
 
@@ -90,7 +100,7 @@ This project is a web scraping tool built using FastAPI. It scrapes product info
 ## Extending the Project
 
 1. **Adding New Storage Backends**: Implement the `Storage` strategy interface for the new storage backend and update the `get_storage` function.
-2. **Adding New Notifiers**: Implement the `Notifier` interface and create a new notifier class. Update the `scrape` function to use the new notifier.
+2. **Adding New Notifiers**: Implement the `Notifier` interface and create a new notifier class. Update the `notify` function to use the new notifier.
 3. **Customizing Retry Logic**: Adjust the `retries` and `retry_interval` in `main.py` to change the retry behavior.
 
 
