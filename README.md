@@ -93,9 +93,12 @@ This project is a web scraping tool built using FastAPI. It scrapes product info
 ## Code Structure
 
 - `main.py`: Main FastAPI application file containing the scraper logic.
-- `storage.py`: Contains storage strategy classes for local storage and Redis storage.
+- `storage_strategy.py`: Contains storage strategy classes for local storage and Redis storage.
 - `cache.py`: Contains the Redis caching logic.
 - `notifier.py`: Contains the notifier interface and console notifier implementation.
+- `auth.py`: Handles user authentication using static tokens for secure access to FastAPI endpoints.
+- `config.py`: Manages configuration settings by loading environment variables from a .env file.
+
 
 ## Extending the Project
 
