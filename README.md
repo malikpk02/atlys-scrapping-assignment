@@ -35,7 +35,7 @@ This project is a web scraping tool built using FastAPI. It scrapes product info
 3. Install the dependencies:
 
     ```bash
-    pip3 install -r requirements.txt
+    pip3 install -r requirement.txt
     ```
 
 4. Ensure Redis is installed and running on your system:
